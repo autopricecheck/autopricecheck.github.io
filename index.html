@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AutoPriceCheck — aplikacja do okresowej kontroli cen aktywnych ofert Allegro.">
+  <title>AutoPriceCheck — informacje o aplikacji</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --granatowy: #12345b;
+      --tekst: #202b38;
+      --tekst-pomocniczy: #596778;
+      --obramowanie: #d8e0e8;
+      --tlo: #f4f6f8;
+      --biale: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--tlo);
+      color: var(--tekst);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    header {
+      padding: 54px 20px;
+      background: var(--granatowy);
+      color: var(--biale);
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2.3rem, 7vw, 3.7rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    header p {
+      margin: 0;
+      color: #dce7f3;
+      font-size: 1.08rem;
+    }
+
+    main {
+      width: min(900px, calc(100% - 32px));
+      margin: 36px auto;
+      padding: 46px;
+      border: 1px solid var(--obramowanie);
+      border-radius: 12px;
+      background: var(--biale);
+    }
+
+    section + section {
+      margin-top: 38px;
+      padding-top: 38px;
+      border-top: 1px solid var(--obramowanie);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--granatowy);
+      font-size: 1.55rem;
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0;
+      padding-left: 25px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .zakresy {
+      margin-top: 18px;
+      padding: 18px;
+      border-left: 4px solid var(--granatowy);
+      background: #f6f8fa;
+    }
+
+    code {
+      display: block;
+      overflow-wrap: anywhere;
+      color: #173f6e;
+      font: 0.93rem Consolas, "Courier New", monospace;
+    }
+
+    code + code {
+      margin-top: 8px;
+    }
+
+    .kontakt {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .pole {
+      padding: 17px;
+      border: 1px solid var(--obramowanie);
+      border-radius: 8px;
+      background: #fafbfc;
+    }
+
+    .etykieta {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--tekst-pomocniczy);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .do-uzupelnienia {
+      color: var(--granatowy);
+      font-weight: 700;
+    }
+
+    footer {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 36px;
+      color: var(--tekst-pomocniczy);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 42px 18px;
+      }
+
+      main {
+        margin-top: 22px;
+        padding: 28px 22px;
+      }
+
+      .kontakt {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AutoPriceCheck</h1>
+    <p>Aplikacja do okresowej kontroli cen aktywnych ofert</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>O aplikacji</h2>
+      <p>
+        AutoPriceCheck jest aplikacją desktopową dla systemu Windows. Pomaga sprzedawcy
+        regularnie wracać do cen własnych aktywnych ofert Allegro i sprawdzać je w ustalonych
+        odstępach czasu.
+      </p>
+      <p>
+        Aplikacja jest narzędziem pomocniczym. Nie ustala nowych cen i nie podejmuje decyzji
+        sprzedażowych za użytkownika.
+      </p>
+    </section>
+
+    <section>
+      <h2>Sposób działania</h2>
+      <ol>
+        <li>Po uruchomieniu aplikacja sprawdza zapisane połączenie z kontem.</li>
+        <li>Pobiera kompletną listę aktywnych ofert sprzedawcy.</li>
+        <li>Wylicza terminy kontroli przypadające co 6 albo 12 miesięcy.</li>
+        <li>Pokazuje oferty wymagające ponownego sprawdzenia w zakładce „Ostrzeżenia”.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Bezpieczeństwo i zakres dostępu</h2>
+      <p>
+        AutoPriceCheck korzysta wyłącznie z odczytu danych konta i własnych ofert. Nie ma
+        funkcji zmiany cen, opisów, stanów magazynowych ani statusów ofert.
+      </p>
+      <ul>
+        <li>Połączenie z kontem odbywa się przez mechanizm OAuth/PKCE.</li>
+        <li>Client Secret i tokeny są chronione lokalnie przez Windows DPAPI.</li>
+        <li>Ustawienia, baza ofert i historia ostrzeżeń są przechowywane na komputerze użytkownika.</li>
+        <li>Ta strona nie wykorzystuje plików cookies, statystyk ani narzędzi śledzących.</li>
+      </ul>
+      <div class="zakresy">
+        <code>allegro:api:profile:read</code>
+        <code>allegro:api:sale:offers:read</code>
+      </div>
+    </section>
+
+    <section>
+      <h2>Operator i kontakt</h2>
+      <p>W sprawach dotyczących aplikacji można skontaktować się z jej operatorem.</p>
+      <div class="kontakt">
+        <!-- UZUPEŁNIJ: zastąp poniższy tekst właściwą nazwą firmy. -->
+        <div class="pole">
+          <span class="etykieta">Nazwa firmy</span>
+          <span class="do-uzupelnienia">AUTO-NAPRAWA Andrzej Kozaczuk</span>
+        </div>
+        <!-- UZUPEŁNIJ: zastąp poniższy tekst właściwym adresem e-mail. -->
+        <div class="pole">
+          <span class="etykieta">Adres e-mail</span>
+          <span class="do-uzupelnienia">andrzej-kozaczuk@wp.pl</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 AutoPriceCheck · wersja 1.0.0</p>
+    <p>AutoPriceCheck jest niezależnym narzędziem i nie jest oficjalną aplikacją ani częścią serwisu Allegro.</p>
+  </footer>
+</body>
+</html>
